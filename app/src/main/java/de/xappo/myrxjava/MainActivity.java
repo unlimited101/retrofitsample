@@ -14,6 +14,7 @@ import android.widget.Button;
 import rx.Observable;
 import rx.Subscriber;
 import rx.Subscription;
+import rx.functions.Action0;
 import rx.functions.Action1;
 
 public class MainActivity extends AppCompatActivity {
@@ -30,29 +31,35 @@ public class MainActivity extends AppCompatActivity {
         startButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Observable<String> myObservable = Observable.create(
-                        new Observable.OnSubscribe<String>() {
-                            @Override
-                            public void call(Subscriber<? super String> sub) {
-                                sub.onNext("Hello, world!");
-                                sub.onCompleted();
-                            }
-                        }
-                );
+                Observable<String> myObservable =
+                        Observable.just("Hello, world!");
 
-                Subscriber<String> mySubscriber = new Subscriber<String>() {
+                Action1<String> onNextAction = new Action1<String>() {
                     @Override
-                    public void onNext(String s) { System.out.println(s); }
+                    public void call(String s) {
+                        System.out.println(s);
+                        //int i = Integer.valueOf("a").intValue();
 
-                    @Override
-                    public void onCompleted() { System.out.println("COMPLETED"); }
-
-                    @Override
-                    public void onError(Throwable e) { }
+                    }
                 };
 
-                myObservable.subscribe(mySubscriber);
-                // Outputs "Hello, world!"
+                Action1<Throwable> onErrorAction = new Action1<Throwable>() {
+                    @Override
+                    public void call(Throwable e) {
+                        System.out.println("ERROR");
+                    }
+                };
+
+                Action0 onCompleteAction = new Action0() {
+
+                    @Override
+                    public void call() {
+                        System.out.println("Complete");
+                    }
+                };
+
+                myObservable.subscribe(onNextAction, onErrorAction, onCompleteAction);
+
 
             }
         });
