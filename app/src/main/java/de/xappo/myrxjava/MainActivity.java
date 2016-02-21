@@ -1,8 +1,6 @@
 package de.xappo.myrxjava;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
@@ -11,13 +9,36 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import rx.Observable;
-import rx.Subscriber;
-import rx.Subscription;
-import rx.functions.Action0;
-import rx.functions.Action1;
+import retrofit.Callback;
+import retrofit.RetrofitError;
+import retrofit.client.Response;
+
 
 public class MainActivity extends AppCompatActivity {
+
+    public static final String TAG = "MainActivity";
+    private GetWeatherRestAdapter mGetWeatherRestAdapter;
+    private Callback<WeatherData> mWeatherDataCallback = new Callback<WeatherData>() {
+
+
+        @Override
+        public void success(WeatherData weatherData, Response response) {
+            Log.d(TAG, "success: weatherData: name: " + weatherData.getName() + ", cod: " + weatherData.getCod());
+        }
+
+        @Override
+        public void failure(RetrofitError error) {
+            Log.e(TAG, "Failure: " + error);
+
+        }
+    };
+
+    public void runRetrofitTestAsync() {
+        if (mGetWeatherRestAdapter == null) {
+            mGetWeatherRestAdapter = new GetWeatherRestAdapter();
+        }
+        mGetWeatherRestAdapter.testWeatherApi("Sunnyvale,USA", mWeatherDataCallback);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,38 +50,10 @@ public class MainActivity extends AppCompatActivity {
         Button startButton = (Button) findViewById(R.id.start_btn);
 
         startButton.setOnClickListener(new View.OnClickListener() {
+
             @Override
             public void onClick(View v) {
-                Observable<String> myObservable =
-                        Observable.just("Hello, world!");
-
-                Action1<String> onNextAction = new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                        System.out.println(s);
-                        //int i = Integer.valueOf("a").intValue();
-
-                    }
-                };
-
-                Action1<Throwable> onErrorAction = new Action1<Throwable>() {
-                    @Override
-                    public void call(Throwable e) {
-                        System.out.println("ERROR");
-                    }
-                };
-
-                Action0 onCompleteAction = new Action0() {
-
-                    @Override
-                    public void call() {
-                        System.out.println("Complete");
-                    }
-                };
-
-                myObservable.subscribe(onNextAction, onErrorAction, onCompleteAction);
-
-
+                runRetrofitTestAsync();
             }
         });
 
