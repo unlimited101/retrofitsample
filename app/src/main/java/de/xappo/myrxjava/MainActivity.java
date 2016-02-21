@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 
 import rx.Observable;
 import rx.Subscriber;
@@ -24,46 +25,48 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        Button startButton = (Button) findViewById(R.id.start_btn);
 
-        fab.setOnClickListener(new View.OnClickListener() {
+        startButton.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+            public void onClick(View v) {
+                Observable<String> myObservable = Observable.create(
+                        new Observable.OnSubscribe<String>() {
+                            @Override
+                            public void call(Subscriber<? super String> sub) {
+                                sub.onNext("Hello, world!");
+                                sub.onCompleted();
+                            }
+                        }
+                );
 
+                Subscriber<String> mySubscriber = new Subscriber<String>() {
+                    @Override
+                    public void onNext(String s) { System.out.println(s); }
 
+                    @Override
+                    public void onCompleted() { System.out.println("COMPLETED"); }
+
+                    @Override
+                    public void onError(Throwable e) { }
+                };
+
+                myObservable.subscribe(mySubscriber);
+                // Outputs "Hello, world!"
 
             }
         });
 
-        Observable<String> myObservable
-                = Observable.just("Hello"); // Emits "Hello"
 
-        Action1<String> myAction = new Action1<String>() {
-            @Override
-            public void call(String s) {
-                Log.d("My Action", s);
-            }
-        };
+    }
 
-        Subscription mySubscription = myObservable.subscribe(myAction);
-
-
-
-        Observable<Integer> myArrayObservable
-                = Observable.from(new Integer[]{1, 2, 3, 4, 5, 6}); // Emits each item of the array, one at a time
-
-        myArrayObservable.subscribe(new Action1<Integer>() {
-            @Override
-            public void call(Integer i) {
-                Log.d("My Action", String.valueOf(i)); // Prints the number received
-            }
-        });
-
-
-
-
+    public String longRunningOperation() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            // error
+        }
+        return "Complete!";
     }
 
     @Override
