@@ -1,4 +1,4 @@
-package de.xappo.myrxjava;
+package de.xappo.myrxjava.retrofit1_9;
 
 /**
  * Created by knoppik on 21.02.16.

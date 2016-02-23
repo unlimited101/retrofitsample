@@ -1,5 +1,6 @@
-package de.xappo.myrxjava;
+package de.xappo.myrxjava.retrofit1_9;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -9,6 +10,8 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
+import de.xappo.myrxjava.R;
+import de.xappo.myrxjava.retrofit2.Retrofit2Activity;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -57,6 +60,16 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        Button retrofit2Button = (Button) findViewById(R.id.btn_retrofit2);
+        retrofit2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, Retrofit2Activity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                startActivity(intent);
+                finish();
+            }
+        });
 
     }
 

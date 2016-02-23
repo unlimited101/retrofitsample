@@ -1,4 +1,4 @@
-package de.xappo.myrxjava;
+package de.xappo.myrxjava.retrofit1_9;
 
 import retrofit.Callback;
 import retrofit.http.GET;

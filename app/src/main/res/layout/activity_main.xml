@@ -21,6 +21,13 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/start_operation_text" />
 
+    <Button
+        android:id="@+id/btn_retrofit2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/go_to_retrofit20" />
+
     <ProgressBar
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
