@@ -4,6 +4,7 @@ import android.util.Log;
 
 import java.util.List;
 
+import de.xappo.myrxjava.retrofit2.ObservableManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -19,10 +20,13 @@ public class ReposResponseListener implements Callback<List<Repo>> {
         for (Repo repo : repos) {
             Log.i(getClass().getName(), "repo: " + repo);
         }
+
+        ObservableManager.getInstance().emitItems(repos);
     }
 
     @Override
     public void onFailure(Throwable t) {
         Log.e(getClass().getName(), "Throwable: " + t);
     }
+
 }

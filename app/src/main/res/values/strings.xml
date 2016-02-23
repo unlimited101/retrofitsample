@@ -4,4 +4,5 @@
     <string name="start_operation_text">Start Operation</string>
     <string name="go_to_retrofit20">Zu Retrofit 2.0</string>
     <string name="title_activity_retrofit2">Retrofit2Activity</string>
+    <string name="btn_receive_repos">Empfange Repos</string>
 </resources>

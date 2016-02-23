@@ -13,4 +13,13 @@
     tools:context="de.xappo.myrxjava.retrofit2.Retrofit2Activity"
     tools:showIn="@layout/activity_retrofit2">
 
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_receive"
+        android:text="@string/btn_receive_repos"
+        android:layout_gravity="bottom|start"
+        />
+
 </merge>
