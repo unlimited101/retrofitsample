@@ -15,7 +15,7 @@ import static timber.log.Timber.DebugTree;
  */
 public class MyRxJavaApplication extends Application {
 
-    private static Observable<Date> dateObservable;
+    private Observable<Date> dateObservable;
 
     @Override
     public void onCreate() {
@@ -28,11 +28,11 @@ public class MyRxJavaApplication extends Application {
         }
     }
 
-    public static Observable<Date> getDateObservable() {
+    public Observable<Date> getDateObservable() {
         return dateObservable;
     }
 
-    public static void createDateObservable(Date date) {
+    public void createDateObservable(Date date) {
         dateObservable =
                 Observable.create(sub -> {
                     sub.onNext(date);

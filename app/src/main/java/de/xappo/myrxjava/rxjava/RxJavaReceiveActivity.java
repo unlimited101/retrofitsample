@@ -66,7 +66,7 @@ public class RxJavaReceiveActivity extends AppCompatActivity {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_receive_date_manually)
     public void buttonReceiveDateManuallyClick() {
-        MyRxJavaApplication.getDateObservable().subscribe(dateSubscriber);
+        ((MyRxJavaApplication)getApplication()).getDateObservable().subscribe(dateSubscriber);
     }
 
 
