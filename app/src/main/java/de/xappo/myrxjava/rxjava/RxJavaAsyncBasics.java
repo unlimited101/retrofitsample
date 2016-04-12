@@ -14,6 +14,7 @@ import rx.Observable;
 import rx.Subscriber;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
+import rx.functions.Func2;
 import rx.schedulers.Schedulers;
 import timber.log.Timber;
 
@@ -36,16 +37,43 @@ public class RxJavaAsyncBasics extends AppCompatActivity {
                 }
             }
         });
+//
+//        fetchFromGoogle
+//                .subscribeOn(Schedulers.newThread()) // Create a new Thread
+//                .observeOn(AndroidSchedulers.mainThread()) // Use the UI thread
+//                .subscribe(new Action1<String>() {
+//                    @Override
+//                    public void call(String s) {
+//                        Timber.i("String: %s", s);
+//                    }
+//                });
 
-        fetchFromGoogle
-                .subscribeOn(Schedulers.newThread()) // Create a new Thread
-                .observeOn(AndroidSchedulers.mainThread()) // Use the UI thread
-                .subscribe(new Action1<String>() {
-                    @Override
-                    public void call(String s) {
-                        Timber.i("String: %s", s);
-                    }
+        Observable<String> fetchFromYahoo = Observable.create(new Observable.OnSubscribe<String>() {
+            @Override
+            public void call(Subscriber<? super String> subscriber) {
+                try {
+                    String data = fetchData("http://www.yahoo.com");
+                    subscriber.onNext(data); // Emit the contents of the URL
+                    subscriber.onCompleted(); // Nothing more to emit
+                }catch(Exception e){
+                    subscriber.onError(e); // In case there are network errors
+                }
+            }
+        });
+
+//        fetchFromGoogle = fetchFromGoogle.subscribeOn(Schedulers.newThread());
+//        fetchFromYahoo = fetchFromYahoo.subscribeOn(Schedulers.newThread());
+
+        // Fetch from both simultaneously
+        Observable<String> zipped
+                = Observable.zip(fetchFromGoogle, fetchFromYahoo, (google, yahoo) -> {
+                    // Do something with the results of both threads
+                    Timber.d("String: %s, %s", google, yahoo);
+                    return google + "\n" + yahoo;
                 });
+        zipped.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(s -> {
+            Timber.i("String: %s", s);
+        });
     }
 
     private String fetchData(String url) throws IOException {
