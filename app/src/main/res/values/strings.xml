@@ -107,4 +107,6 @@
     <string name="btn_rx_java_emit_sequentially">Sende Datum und schließe Activity</string>
     <string name="btn_close_all_new_tasks">Schließe alle neuen Tasks</string>
     <string name="btn_create_date">Erstelle Datum</string>
+    <string name="btn_receive_date_manually">Empfange Datum manuell</string>
+    <string name="textview_date">Aktuelles Datum: %1$s</string>
 </resources>

@@ -9,12 +9,15 @@ import java.util.Date;
 
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import de.xappo.myrxjava.MyRxJavaApplication;
 import de.xappo.myrxjava.R;
+import de.xappo.myrxjava.rxjava.observables.DateObservable;
+import rx.Observable;
 import timber.log.Timber;
 
 public class RxJavaEmitSequentiallyActivity extends AppCompatActivity {
 
-    Date mDate;
+    private Date mDate;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +36,7 @@ public class RxJavaEmitSequentiallyActivity extends AppCompatActivity {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_rx_java_emit_sequentially)
     public void buttonRxEmitSequantiallyClick() {
+        MyRxJavaApplication.createDateObservable(mDate);
         finish();
     }
 

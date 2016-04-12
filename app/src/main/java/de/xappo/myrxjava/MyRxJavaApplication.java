@@ -3,6 +3,9 @@ package de.xappo.myrxjava;
 import android.app.Application;
 import android.util.Log;
 
+import java.util.Date;
+
+import rx.Observable;
 import timber.log.Timber;
 
 import static timber.log.Timber.DebugTree;
@@ -11,6 +14,9 @@ import static timber.log.Timber.DebugTree;
  * Created by knoppik on 12.04.16.
  */
 public class MyRxJavaApplication extends Application {
+
+    private static Observable<Date> dateObservable;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -20,6 +26,18 @@ public class MyRxJavaApplication extends Application {
         } else {
             Timber.plant(new CrashReportingTree());
         }
+    }
+
+    public static Observable<Date> getDateObservable() {
+        return dateObservable;
+    }
+
+    public static void createDateObservable(Date date) {
+        dateObservable =
+                Observable.create(sub -> {
+                    sub.onNext(date);
+                    sub.onCompleted();
+                });
     }
 
     /** A tree which logs important information for crash reporting. */
