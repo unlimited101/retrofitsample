@@ -24,4 +24,11 @@ public class RxJavaEntryPointActivity extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_MULTIPLE_TASK);
         startActivity(intent);
     }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.btn_go_to_rxjava_async_basics_activity)
+    public void buttonRxJavaAsyncsBasicActivityClick() {
+        Intent intent = new Intent(this, RxJavaAsyncBasics.class);
+        startActivity(intent);
+    }
 }

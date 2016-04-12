@@ -44,8 +44,9 @@ public class MyRxJavaApplication extends Application {
     }
 
     public void emitDateListObservable() {
-        dateListObservable = Observable.from(mDateList);
+        dateListObservable = Observable.from(mDateList).map(date -> new Date(date.getYear() - 1, date.getMonth(), date.getDay()));
     }
+
 
     public void addDate(Date date) {
         mDateList.add(date);

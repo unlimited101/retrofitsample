@@ -34,14 +34,18 @@
         </activity>
         <activity
             android:name=".rxjava.RxJavaEntryPointActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="@string/title_activity_rx_java_entry_point"/>
-        <activity android:name=".rxjava.RxJavaReceiveActivity"
-                  android:parentActivityName=".rxjava.RxJavaEntryPointActivity"
-                  android:label="@string/title_activity_rx_java_receive"/>
-        <activity android:name=".rxjava.RxJavaEmitSequentiallyActivity"
-                  android:parentActivityName=".rxjava.RxJavaReceiveActivity"
-                  android:label="@string/title_activity_rx_java_emit_sequentially"/>
+            android:label="@string/title_activity_rx_java_entry_point"
+            android:parentActivityName=".MainActivity"/>
+        <activity
+            android:name=".rxjava.RxJavaReceiveActivity"
+            android:label="@string/title_activity_rx_java_receive"
+            android:parentActivityName=".rxjava.RxJavaEntryPointActivity"/>
+        <activity
+            android:name=".rxjava.RxJavaEmitSequentiallyActivity"
+            android:label="@string/title_activity_rx_java_emit_sequentially"
+            android:parentActivityName=".rxjava.RxJavaReceiveActivity"/>
+        <activity android:name=".rxjava.RxJavaAsyncBasics">
+        </activity>
     </application>
 
 </manifest>
