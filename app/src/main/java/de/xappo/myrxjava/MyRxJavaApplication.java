@@ -6,6 +6,7 @@ import android.util.Log;
 import java.util.Date;
 
 import rx.Observable;
+import rx.subjects.ReplaySubject;
 import timber.log.Timber;
 
 import static timber.log.Timber.DebugTree;
@@ -16,6 +17,7 @@ import static timber.log.Timber.DebugTree;
 public class MyRxJavaApplication extends Application {
 
     private Observable<Date> dateObservable;
+    private ReplaySubject<Date> dateSubject = ReplaySubject.create();
 
     @Override
     public void onCreate() {
@@ -38,6 +40,10 @@ public class MyRxJavaApplication extends Application {
                     sub.onNext(date);
                     sub.onCompleted();
                 });
+    }
+
+    public ReplaySubject<Date> getReplaySubject() {
+        return dateSubject;
     }
 
     /** A tree which logs important information for crash reporting. */

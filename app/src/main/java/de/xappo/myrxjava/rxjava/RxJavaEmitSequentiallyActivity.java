@@ -11,6 +11,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 import de.xappo.myrxjava.MyRxJavaApplication;
 import de.xappo.myrxjava.R;
+import rx.subjects.ReplaySubject;
 import timber.log.Timber;
 
 public class RxJavaEmitSequentiallyActivity extends AppCompatActivity {
@@ -35,6 +36,15 @@ public class RxJavaEmitSequentiallyActivity extends AppCompatActivity {
     @OnClick(R.id.btn_rx_java_emit_sequentially)
     public void buttonRxEmitSequantiallyClick() {
         ((MyRxJavaApplication)getApplication()).createDateObservable(mDate);
+        finish();
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.btn_rx_java_emit_sequentially_replay)
+    public void buttonRxEmitSequantiallyReplayClick() {
+        ReplaySubject<Date> dateReplaySubject = ((MyRxJavaApplication)getApplication()).getReplaySubject();
+        dateReplaySubject.onNext(mDate);
+        dateReplaySubject.onCompleted();
         finish();
     }
 
