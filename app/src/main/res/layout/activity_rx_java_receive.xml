@@ -31,6 +31,13 @@
         android:text="@string/btn_receive_date_manually_replay"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_unsubscribe"
+        android:text="@string/btn_unsubscribe"
+        />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

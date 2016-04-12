@@ -17,6 +17,7 @@ import butterknife.OnClick;
 import de.xappo.myrxjava.MyRxJavaApplication;
 import de.xappo.myrxjava.R;
 import rx.Subscriber;
+import rx.Subscription;
 import rx.subjects.ReplaySubject;
 import timber.log.Timber;
 
@@ -24,6 +25,8 @@ public class RxJavaReceiveActivity extends AppCompatActivity {
 
     @Bind(R.id.textview_date)
     protected TextView mTextView;
+
+    private Subscription mSubscription;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,14 +70,22 @@ public class RxJavaReceiveActivity extends AppCompatActivity {
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_receive_date_manually)
     public void buttonReceiveDateManuallyClick() {
-        ((MyRxJavaApplication)getApplication()).getDateObservable().subscribe(dateSubscriber);
+        mSubscription = ((MyRxJavaApplication) getApplication()).getDateObservable().subscribe(dateSubscriber);
     }
 
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_receive_date_manually_replay)
-    public void buttonReceiveDateManuallyReplay() {
+    public void buttonReceiveDateManuallyReplayClick() {
         ReplaySubject<Date> subject = ((MyRxJavaApplication) getApplication()).getReplaySubject();
-        subject.subscribe(dateSubscriber);
+        mSubscription = subject.subscribe(dateSubscriber);
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.btn_unsubscribe)
+    public void buttonUnsubscribeClick() {
+        if (mSubscription != null) {
+            mSubscription.unsubscribe();
+        }
     }
 
     @SuppressWarnings("unused")

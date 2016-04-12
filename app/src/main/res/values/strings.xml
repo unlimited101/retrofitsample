@@ -112,4 +112,5 @@
     <string name="btn_receive_date_manually_replay">Empfange Datum manuell (Replay)</string>
     <string name="textview_date">Aktuelles Datum: %1$s</string>
     <string name="btn_delete_date">Lösche Datum</string>
+    <string name="btn_unsubscribe">Unsubscribe</string>
 </resources>
