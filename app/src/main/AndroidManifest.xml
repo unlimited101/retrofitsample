@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".retrofit1_9.MainActivity"
+            android:name=".MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -25,6 +25,22 @@
             android:label="@string/title_activity_retrofit2"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".layout_behavior.ScrollingActivity"
+            android:label="@string/title_activity_scrolling"
+            android:parentActivityName=".MainActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".rxjava.RxJavaEntryPointActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="@string/title_activity_rx_java_entry_point"/>
+        <activity android:name=".rxjava.RxJavaReceiveActivity"
+                  android:parentActivityName=".rxjava.RxJavaEntryPointActivity"
+                  android:label="@string/title_activity_rx_java_receive"/>
+        <activity android:name=".rxjava.RxJavaEmitSequentiallyActivity"
+                  android:parentActivityName=".rxjava.RxJavaReceiveActivity"
+                  android:label="@string/title_activity_rx_java_emit_sequentially"/>
     </application>
 
 </manifest>

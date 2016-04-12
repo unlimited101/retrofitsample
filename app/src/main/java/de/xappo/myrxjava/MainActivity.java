@@ -1,4 +1,4 @@
-package de.xappo.myrxjava.retrofit1_9;
+package de.xappo.myrxjava;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,13 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 
-import de.xappo.myrxjava.R;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
+import de.xappo.myrxjava.layout_behavior.ScrollingActivity;
+import de.xappo.myrxjava.retrofit1_9.GetWeatherRestAdapter;
+import de.xappo.myrxjava.retrofit1_9.WeatherData;
 import de.xappo.myrxjava.retrofit2.Retrofit2Activity;
+import de.xappo.myrxjava.rxjava.RxJavaEntryPointActivity;
 import retrofit.Callback;
 import retrofit.RetrofitError;
 import retrofit.client.Response;
@@ -47,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -103,4 +109,19 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.btn_layout_behavior)
+    public void buttonLayoutBehaviorClick() {
+        Intent intent = new Intent(this, ScrollingActivity.class);
+        startActivity(intent);
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.btn_rx_java)
+    public void buttonRxJavaClick() {
+        Intent intent = new Intent(this, RxJavaEntryPointActivity.class);
+        startActivity(intent);
+    }
+
 }

@@ -22,4 +22,12 @@
         android:layout_gravity="bottom|start"
         />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/btn_receive_rx"
+        android:text="@string/btn_receive_repos_rx"
+        android:layout_gravity="bottom|center"
+        />
+
 </merge>

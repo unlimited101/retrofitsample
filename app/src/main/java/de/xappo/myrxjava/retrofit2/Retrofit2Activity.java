@@ -9,11 +9,19 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.List;
+
 import de.xappo.myrxjava.R;
 import de.xappo.myrxjava.retrofit2.github.GithubRestAdapter;
 import de.xappo.myrxjava.retrofit2.github.Repo;
 import de.xappo.myrxjava.retrofit2.github.ReposResponseListener;
+import de.xappo.myrxjava.retrofit2.github.rxjava.GithubRestAdapterRx;
+import retrofit2.HttpException;
+import rx.Observable;
 import rx.Subscriber;
+import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 public class Retrofit2Activity extends AppCompatActivity {
 
@@ -64,6 +72,41 @@ public class Retrofit2Activity extends AppCompatActivity {
                 ObservableManager.getInstance().getObservable().subscribe(mSubscriber);
             }
         });
+
+        Button buttonReceiveRx = (Button) findViewById(R.id.btn_receive_rx);
+        buttonReceive.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GithubRestAdapterRx githubRestAdapterRx = new GithubRestAdapterRx();
+                Observable<List<Repo>> call = githubRestAdapterRx.getGithubApiRx().listRepos("unlimited101");
+                Subscription subscription = call
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread()).subscribe(new Subscriber<List<Repo>>() {
+                            @Override
+                            public void onCompleted() {
+
+                            }
+
+                            @Override
+                            public void onError(Throwable e) {
+                                // cast to retrofit.HttpException to get the response code
+                                if (e instanceof HttpException) {
+                                    HttpException response = (HttpException)e;
+                                    int code = response.code();
+                                }
+                            }
+
+                            @Override
+                            public void onNext(List<Repo> repos) {
+                                for (Repo repo : repos) {
+                                    Log.i(getClass().getName(), "RetrofitRX - repo: " + repo);
+                                }
+                            }
+                        });
+
+            }
+        });
+
     }
 
 }
