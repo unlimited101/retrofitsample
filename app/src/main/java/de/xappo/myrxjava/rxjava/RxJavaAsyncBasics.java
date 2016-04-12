@@ -61,6 +61,7 @@ public class RxJavaAsyncBasics extends AppCompatActivity {
             }
         });
 
+
 //        fetchFromGoogle = fetchFromGoogle.subscribeOn(Schedulers.newThread());
 //        fetchFromYahoo = fetchFromYahoo.subscribeOn(Schedulers.newThread());
 
@@ -71,7 +72,7 @@ public class RxJavaAsyncBasics extends AppCompatActivity {
                     Timber.d("String: %s, %s", google, yahoo);
                     return google + "\n" + yahoo;
                 });
-        zipped.subscribeOn(Schedulers.newThread()).observeOn(AndroidSchedulers.mainThread()).subscribe(s -> {
+        zipped.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(s -> {
             Timber.i("String: %s", s);
         });
     }
