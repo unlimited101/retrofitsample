@@ -106,11 +106,16 @@
     <string name="btn_go_to_rx_java_emit_sequentially">Zu sequentiell emitierender Activity</string>
     <string name="btn_rx_java_emit_sequentially">Sende Datum und schließe Activity</string>
     <string name="btn_rx_java_emit_sequentially_replay">Sende Datum und schließe Activity (Replay)</string>
+    <string name="btn_rx_java_emit_list_sequentially">Sende Datumsliste und schließe Activity</string>
     <string name="btn_close_all_new_tasks">Schließe alle neuen Tasks</string>
     <string name="btn_create_date">Erstelle Datum</string>
     <string name="btn_receive_date_manually">Empfange Datum manuell</string>
     <string name="btn_receive_date_manually_replay">Empfange Datum manuell (Replay)</string>
+    <string name="btn_receive_date_list_manually">Empfange Daten manuell </string>
+
     <string name="textview_date">Aktuelles Datum: %1$s</string>
     <string name="btn_delete_date">Lösche Datum</string>
     <string name="btn_unsubscribe">Unsubscribe</string>
+
+
 </resources>

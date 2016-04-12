@@ -60,6 +60,29 @@ public class RxJavaReceiveActivity extends AppCompatActivity {
         }
     };
 
+    Subscriber<Date> dateListSubscriber = new Subscriber<Date>() {
+
+        private Date mDate;
+
+        @Override
+        public void onCompleted() {
+            Toast.makeText(RxJavaReceiveActivity.this, "Receiving completed!", Toast.LENGTH_SHORT).show();
+            mTextView.setText(String.format(dateStr, mDate.toString()));
+        }
+
+        @Override
+        public void onError(Throwable e) {
+
+        }
+
+        @Override
+        public void onNext(Date date) {
+            mDate = date;
+            Timber.i("Received date: %s", date.toString());
+            Timber.i("thread id: %d", Thread.currentThread().getId());
+        }
+    };
+
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_go_to_rx_java_emit_sequentially)
     public void buttonGoToRxEmitSequantiallyClick() {
@@ -78,6 +101,12 @@ public class RxJavaReceiveActivity extends AppCompatActivity {
     public void buttonReceiveDateManuallyReplayClick() {
         ReplaySubject<Date> subject = ((MyRxJavaApplication) getApplication()).getReplaySubject();
         mSubscription = subject.subscribe(dateSubscriber);
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.btn_receive_date_list_manually)
+    public void buttonReceiveDateListManuallyClick() {
+        mSubscription = ((MyRxJavaApplication) getApplication()).getDateListObservable().subscribe(dateListSubscriber);
     }
 
     @SuppressWarnings("unused")

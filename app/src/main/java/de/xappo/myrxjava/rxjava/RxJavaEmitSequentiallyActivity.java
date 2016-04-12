@@ -29,13 +29,14 @@ public class RxJavaEmitSequentiallyActivity extends AppCompatActivity {
     @OnClick(R.id.btn_create_date)
     public void buttonCreateDateClick() {
         mDate = new Date();
-        Timber.i("Date is: %s", mDate.toString());
+        ((MyRxJavaApplication)getApplication()).addDate(mDate);
+        Timber.d("Date is: %s", mDate.toString());
     }
 
     @SuppressWarnings("unused")
     @OnClick(R.id.btn_rx_java_emit_sequentially)
     public void buttonRxEmitSequantiallyClick() {
-        ((MyRxJavaApplication)getApplication()).createDateObservable(mDate);
+        ((MyRxJavaApplication)getApplication()).createDateObservable();
         finish();
     }
 
@@ -45,6 +46,13 @@ public class RxJavaEmitSequentiallyActivity extends AppCompatActivity {
         ReplaySubject<Date> dateReplaySubject = ((MyRxJavaApplication)getApplication()).getReplaySubject();
         dateReplaySubject.onNext(mDate);
         dateReplaySubject.onCompleted();
+        finish();
+    }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.btn_rx_java_emit_list_sequentially)
+    public void buttonRxEmitListSequantiallyClick() {
+        ((MyRxJavaApplication)getApplication()).emitDateListObservable();
         finish();
     }
 
