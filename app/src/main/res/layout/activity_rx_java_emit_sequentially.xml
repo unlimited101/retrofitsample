@@ -14,16 +14,20 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/btn_create_date"
+        android:text="@string/btn_create_date"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/btn_rx_java_emit_sequentially"
-        android:text="@string/btn_rx_java_emit_sequentially"
-        />
+        android:text="@string/btn_rx_java_emit_sequentially"/>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/btn_close_all_new_tasks"
-        android:text="@string/btn_close_all_new_tasks"
-        />
+        android:text="@string/btn_close_all_new_tasks"/>
 
 
 
