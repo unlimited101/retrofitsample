@@ -31,4 +31,11 @@ public class RxJavaEntryPointActivity extends AppCompatActivity {
         Intent intent = new Intent(this, RxJavaAsyncBasics.class);
         startActivity(intent);
     }
+
+    @SuppressWarnings("unused")
+    @OnClick(R.id.btn_go_to_rxjava_operators_activity)
+    public void buttonRxJavaOperatorsActivityClick() {
+        Intent intent = new Intent(this, RxJavaOperatorsActivity.class);
+        startActivity(intent);
+    }
 }

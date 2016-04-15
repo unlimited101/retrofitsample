@@ -117,6 +117,8 @@
     <string name="btn_delete_date">Lösche Datum</string>
     <string name="btn_unsubscribe">Unsubscribe</string>
     <string name="btn_go_to_rxjava_async_basics_activity">Zu RxJava Async basics</string>
+    <string name="btn_rx_java_operators">RxJava Operatoren</string>
+    <string name="btn_go_to_rxjava_operators_activity">Zu RxJava Operatoren</string>
 
 
 </resources>

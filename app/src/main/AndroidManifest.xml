@@ -46,6 +46,8 @@
             android:parentActivityName=".rxjava.RxJavaReceiveActivity"/>
         <activity android:name=".rxjava.RxJavaAsyncBasics">
         </activity>
+        <activity android:name=".rxjava.RxJavaOperatorsActivity">
+        </activity>
     </application>
 
 </manifest>

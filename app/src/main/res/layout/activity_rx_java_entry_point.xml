@@ -23,5 +23,11 @@
         android:id="@+id/btn_go_to_rxjava_async_basics_activity"
         android:text="@string/btn_go_to_rxjava_async_basics_activity"/>
 
+    <Button
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:id="@+id/btn_go_to_rxjava_operators_activity"
+        android:text="@string/btn_go_to_rxjava_operators_activity"/>
+
 
 </LinearLayout>
